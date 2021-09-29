@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.NetCore" Version="1.8.8" />
+    <PackageReference Include="Dapper.StrongName" Version="2.0.78" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />  
+    <PackageReference Include="SharpZipLib.NETStandard" Version="1.0.7" />
+    <PackageReference Include="Rebus" Version="6.5.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EAU.Core\EAU.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+</Project>

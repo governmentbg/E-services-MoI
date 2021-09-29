@@ -1,0 +1,47 @@
+﻿<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents.Domain\bin\Debug\netstandard2.0\EAU.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents\bin\Debug\netstandard2.0\EAU.Documents.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.PBZN.Documents.Domain\bin\Debug\netstandard2.0\EAU.PBZN.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.PBZN.Documents\bin\Debug\netstandard2.0\EAU.PBZN.Documents.dll" #>
+
+<#@ import namespace="EAU.PBZN.Documents.Models.Forms" #>
+<#@ import namespace="EAU.PBZN.Documents.Models" #>
+<#@ import namespace="EAU.PBZN.Documents.Domain.Models" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(ApplicationForIssuingOrRenewingCertificateToWorkWithFluorinatedGreenhouseGassesVM), 
+            typeof(ApplicationForIssuingOrRenewingCertificateToWorkWithFluorinatedGreenhouseGassesDataVM),
+            typeof(ApplicationForIssuingOrRenewingCertificateToWorkWithFluorinatedGreenhouseGassesPersonDataVM),
+            typeof(ApplicationForIssuingOrRenewingCertificateToWorkWithFluorinatedGreenhouseGassesEntityDataVM),
+            typeof(CertifiedPersonelVM),
+            typeof(ApplicationForIssuingDocumentsOfIncurredAndOtherAccidentsAndProvideInformationOnTheActivityCarriedOutVM),
+            typeof(ApplicationForIssuingDocumentsOfIncurredAndOtherAccidentsAndProvideInformationOnTheActivityCarriedOutDataVM),
+            typeof(CertificateForAccidentVM),
+            typeof(CertificateToWorkWithFluorinatedGreenhouseGassesVM)
+            };
+    var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {            
+              typeof(EntityOrPerson),
+              typeof(CertificateType)
+            }; 
+    var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import {ApplicationFormVMBase, PoliceDepartment, EntityAddress, PersonAddress, DocumentMustServeToVM,  ElectronicServiceApplicantVM, OfficialVM, DocumentURI, AISCaseURIVM, SigningDocumentFormVMBase, ElectronicServiceProviderBasicDataVM } from 'eau-documents'
+
+<#=        enumes #>
+
+<#=        classes #> 
+
+

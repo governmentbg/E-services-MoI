@@ -1,0 +1,69 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\EAU\bin\Debug\netstandard2.0\EAU.dll" #>
+<#@ import namespace="EAU.Users.Models" #>
+<#@ import namespace="EAU.Common.Models" #>
+<#@ import namespace="EAU.Payments.RegistrationsData.Models" #>
+<#@ import namespace="EAU.Nomenclatures.Models" #>
+<#@ import namespace="EAU.Nomenclatures.Repositories" #>
+<#@ import namespace="EAU.CMS.Models" #>
+<#@ import namespace="EAU.CMS.Repositories" #>
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {           
+		    typeof(AppParameterSearchCriteria),		
+		    typeof(DeclarationSearchCriteria),	
+		    typeof(DocumentTemplateSearchCriteria),
+		    typeof(ServiceSearchCriteria),
+		    typeof(ServiceGroupSearchCriteria),
+		    typeof(LabelSearchCriteria),
+		    typeof(PageSearchCriteria),
+            typeof(AppParameter),          
+			typeof(Declaration),
+			typeof(DocumentTemplate),
+			typeof(DocumentTemplateField),
+			typeof(DocumentType),		
+			typeof(Label),		
+			typeof(Language),		
+			typeof(DeliveryChannel),
+			typeof(Service),
+			typeof(ServiceGroup),		 
+			typeof(ServiceTerm),
+			typeof(Ekatte),
+			typeof(Grao),
+			typeof(Page),
+			typeof(Functionality),
+		    typeof(UserPermission),
+		    typeof(UserAuthentication),
+			typeof(Country) 
+            };       
+	var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {           
+            typeof(AppParameterTypes),
+			typeof(DocumentTypes),
+			typeof(AdmServiceTermType),
+			typeof(ExecutionPeriodType),
+			typeof(WaysToStartService),
+			typeof(Functionalities),
+			typeof(EkatteTypes),
+			typeof(GraoTypes),
+			typeof(RegistrationDataTypes),
+			typeof(UserPermissions),
+			typeof(AuthenticationTypes),
+			typeof(UserStatuses)
+            };
+	var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import * as moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel, BasePagedSearchCriteria } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+
+<#= enumes #>
+
+<#= classes #> 

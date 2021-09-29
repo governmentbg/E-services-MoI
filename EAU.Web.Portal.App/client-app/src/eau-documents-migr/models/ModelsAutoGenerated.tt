@@ -1,0 +1,38 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents.Domain\bin\Debug\netstandard2.0\EAU.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents\bin\Debug\netstandard2.0\EAU.Documents.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Migr.Documents.Domain\bin\Debug\netstandard2.0\EAU.Migr.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Migr.Documents\bin\Debug\netstandard2.0\EAU.Migr.Documents.dll" #>
+
+<#@ import namespace="EAU.Migr.Documents.Domain.Models" #>
+<#@ import namespace="EAU.Migr.Documents.Models.Forms" #>
+<#@ import namespace="EAU.Migr.Documents.Models" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(ApplicationForIssuingDocumentForForeignersVM),
+            typeof(ApplicationForIssuingDocumentForForeignersDataVM),
+            };
+    var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {  
+            
+            };
+    var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import { ApplicationFormVMBase, PersonAddress, CitizenshipVM, DocumentMustServeToVM} from 'eau-documents'
+
+<#=        enumes #>
+
+<#=        classes #> 
+

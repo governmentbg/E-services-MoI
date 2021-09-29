@@ -1,0 +1,131 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents.Domain\bin\Debug\netstandard2.0\EAU.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents\bin\Debug\netstandard2.0\EAU.Documents.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.KAT.Documents.Domain\bin\Debug\netstandard2.0\EAU.KAT.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.KAT.Documents\bin\Debug\netstandard2.0\EAU.KAT.Documents.dll" #>
+
+<#@ import namespace="EAU.KAT.Documents.Domain.Models" #>
+<#@ import namespace="EAU.KAT.Documents.Domain.Models.Forms" #>
+<#@ import namespace="EAU.KAT.Documents.Models.Forms" #>
+<#@ import namespace="EAU.KAT.Documents.Models" #>
+<#@ import namespace="EAU.KAT.Documents.Models.Forms.DocumentForms" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(ApplicationForIssuingDocumentofVehicleOwnershipVM), 
+          	typeof(ApplicationForIssuingDocumentofVehicleOwnershipDataVM),
+			typeof(ApplicationForIssuingDocumentofVehicleOwnershipDataRegistrationAndMakeVM),
+            typeof(ApplicationForIssuingDocumentForRightsAndImposedPenaltiesOfVehicleDriverDataVM),
+            typeof(ApplicationForIssuingDocumentForRightsAndImposedPenaltiesOfVehicleDriverVM),
+            typeof(RequestForDecisionForDealVM),
+            typeof(RequestForDecisionForDealDataVM),
+            typeof(VehicleOwnerDataVM),
+            typeof(VehicleBuyerDataVM),
+            typeof(PersonDataVM),
+            typeof(PersonData),
+            typeof(EntityData),
+            typeof(PersonIdentifierVM),
+            typeof(VehicleRegistrationDataVM),
+            typeof(PersonEntityDataVM),
+            typeof(EntityDataVM),
+            typeof(RequestForApplicationForIssuingDuplicateDrivingLicenseVM),
+            typeof(CertificateOfVehicleOwnershipVM),
+            typeof(VehicleDataVM),
+            typeof(VehicleDataItemVM),
+            typeof(VehicleOwnerInformationItemVM),
+            typeof(VehicleOwnerAddress),
+            typeof(VehicleDataItemVehicleSuspension),
+            typeof(ReportForChangingOwnershipVM),
+            typeof(VehicleRegistrationData),
+            typeof(ReportForChangingOwnershipOldOwnersDataVM),
+            typeof(ReportForChangingOwnershipNewOwnersDataVM),
+            typeof(ReportForChangingOwnershipGuaranteeFund),
+            typeof(Status),
+            typeof(ReportForChangingOwnershipOldOwnersDataOldOwnersVM),
+            typeof(ReportForChangingOwnershipNewOwnersDataNewOwnersVM),
+            typeof(VehicleCategory),
+            typeof(CertificateAttestingToTheRightsAndPenaltiesOfVehicleDriverVM),
+            typeof(DataForPrintSRMPSVM),
+            typeof(DataForPrintSRMPSDataVM),
+            typeof(ApplicationForIssuingOfDuplicateOfDrivingLicenseControlCouponVM),
+            typeof(ApplicationForIssuingOfDuplicateOfDrivingLicenseControlCouponDataVM),
+            typeof(ApplicationForIssuingOfControlCouponForDriverWithNoPenaltiesVM),
+            typeof(ApplicationForIssuingOfControlCouponForDriverWithNoPenaltiesDataVM),
+            typeof(ApplicationForTerminationOfVehicleRegistrationVM),
+            typeof(ApplicationForIssuingOfDuplicateOfVehicleRegistrationCertificateVM),
+            typeof(VehicleDataRequestVM),
+            typeof(AISKATReason),
+            typeof(OwnersCollectionVM),
+            typeof(OwnerVM),
+            typeof(ApplicationForIssuingTempraryTraficPermitForVehicleVM),
+            typeof(ApplicationForTemporaryTakingOffRoadOfVehicleVM),
+            typeof(ApplicationForCommissioningTemporarilySuspendedVehicleVM),
+            typeof(ReportForVehicleVM),
+            typeof(ReportForVehicleRPSSVehicleDataVM),
+            typeof(ReportForVehicleRPSSVehicleDataOwnersVM),
+            typeof(ReportForVehicleOwnersVM),
+            typeof(ReportForVehiclePeriodicTechnicalCheck),
+            typeof(ReportForVehicleGuaranteeFund),
+            typeof(ReportForVehicleRPSSVehicleDataOwners),
+            typeof(ReportForVehicleEUCARISData),
+            typeof(DeclarationForLostSRPPSVM),
+            typeof(DeclarationForLostSRPPSData),
+            typeof(ApplicationForMountingOfRegistrationPlatesAndOrIdentificationOfVehiclesVM),
+            typeof(ApplicationForMountingOfRegistrationPlatesAndOrIdentificationOfVehiclesDataVM),                       
+            typeof(ApplicationForIssuingOfTemporaryRegistrationPlatesToMerchantsVM),
+            typeof(ApplicationForIssuingOfTemporaryRegistrationPlatesToMerchantsDataVM),
+            typeof(AuthorizedPersonCollectionVM),
+            typeof(ApplicationForIssuingOfTemporaryRegistrationPlatesToMerchantsDataAuthorizedPersons),
+            typeof(MerchantData),
+            typeof(MerchantDataCompanyCase),
+            typeof(ApplicationForChangeRegistrationOfVehiclesVM),
+            typeof(ApplicationForChangeRegistrationOfVehiclesDataVM),
+            typeof(VehicleRegistrationChangeWithBarterVM),
+            typeof(VehicleRegistrationChangeVM),
+            typeof(ApplicationForInitialVehicleRegistrationVM),
+            typeof(ApplicationForInitialVehicleRegistrationDataVM),
+            typeof(ApplicationForInitialVehicleRegistrationDataVehicleIdentificationData),
+            typeof(ApplicationForInitialVehicleRegistrationDataOwnersCollectionVM),
+            typeof(InitialVehicleRegistrationUserOrOwnerOfSRMPSVM),
+            typeof(InitialVehicleRegistrationOwnerDataVM),
+            typeof(ApplicationForIssuingVehicleRegistrationNumberWithCombinationSixLettersOrDigitsVM),
+            typeof(ApplicationForIssuingVehicleRegistrationNumberWithCombinationSixLettersOrDigitsDataVM),
+            typeof(NotificationForTemporaryRegistrationPlatesVM),
+            typeof(ReportForChangingOwnershipV2VM),
+            typeof(ReportForChangingOwnershipV2ChangeWithBarterVM),
+            typeof(ReportForChangingOwnershipV2ChangeVM),
+            typeof(ReportForChangingOwnershipV2VehicleDataPeriodicTechnicalCheck),
+            typeof(ReportForChangingOwnershipV2VehicleDataGuaranteeFund),
+            typeof(ReportForChangingOwnershipV2VehicleDataVM),
+            };
+    var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {  
+            typeof(DocumentFor),
+			typeof(OwnershipCertificateReason),
+            typeof(ANDCertificateReason),
+            typeof(RegistrationCertificateTypeNomenclature),
+            typeof(PersonEntityChoiceType),            
+            typeof(CouponDuplicateIssuensReason),      
+            typeof(VehicleOwnershipChangeType),      
+            typeof(VehicleOwnerAdditionalCircumstances),
+            typeof(PersonEntityFarmerChoiceType),
+            typeof(PlatesContentTypes)
+            };
+    var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import { ApplicationFormVMBase, PersonAddress, PersonNames, PersonIdentifierChoiceType, SigningDocumentFormVMBase, OfficialVM, AISCaseURIVM, ElectronicServiceProviderBasicDataVM, ElectronicServiceApplicantVM, PoliceDepartment, PersonAndEntityBasicDataVM, DigitalSignatureContainerVM, AISCaseURI, ElectronicServiceApplicant, PersonBasicData, BIDMaritalStatus, PersonIdentifier, XMLDigitalSignature, EntityAddress } from 'eau-documents'
+
+<#=        enumes #>
+
+<#=        classes #> 

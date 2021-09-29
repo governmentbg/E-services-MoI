@@ -1,0 +1,136 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents.Domain\bin\Debug\netstandard2.0\EAU.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents\bin\Debug\netstandard2.0\EAU.Documents.dll" #>
+<#@ import namespace="EAU.Documents.Domain.Models" #>
+<#@ import namespace="EAU.Documents.Models.Forms" #>
+<#@ import namespace="EAU.Documents.Models" #>
+<#@ import namespace="EAU.Services.Nomenclatures.Models" #>
+<#@ import namespace="EAU.Nomenclatures.Models" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(EkatteAddress),
+            typeof(GRAOAddress),
+            typeof(IdentifierType),
+            typeof(EntityBasicData),
+            typeof(DocumentFormVMBase),   
+            typeof(SigningDocumentFormVMBase<DigitalSignatureContainerVM>),
+            typeof(ApplicationFormVMBase),            
+            typeof(RegisterObjectURI),
+            typeof(DocumentTypeURI),
+            typeof(DocumentsWillBeIssuedMessageVM),
+            typeof(OutstandingConditionsForStartOfServiceMessageVM),
+            typeof(PaymentInstructionsVM),       
+            typeof(ReceiptAcknowledgedMessageVM),           
+            typeof(ReceiptAcknowledgedPaymentForMOIVM),
+            typeof(ReceiptNotAcknowledgedMessageVM),			
+            typeof(RemovingIrregularitiesInstructionsVM),
+            typeof(TerminationOfServiceMessageVM),	
+            typeof(ElectronicServiceApplicantVM),
+            typeof(ElectronicServiceApplicantContactData),
+            typeof(ServiceTermTypeAndApplicantReceiptVM),  
+            typeof(DeclarationsVM),
+            typeof(DeclarationVM),           
+            typeof(ElectronicAdministrativeServiceHeaderVM),
+            typeof(Signature),			
+            typeof(DigitalSignatureContainerVM),
+            typeof(RecipientGroupVM),
+            typeof(PhoneNumbers),
+            typeof(FaxNumbers),       
+            typeof(ServiceApplicantReceiptDataVM),           
+            typeof(DocumentURI),
+            typeof(ElectronicServiceProviderBasicData),
+            typeof(SigningCertificateData),
+            typeof(TimeStampInfo),			
+            typeof(AuthorWithQualityVM),
+            typeof(PersonAndEntityBasicDataVM),
+            typeof(ElectronicServiceRecipientVM),       
+            typeof(ServiceApplicantReceiptDataAddress),           
+            typeof(ServiceApplicantReceiptDataMunicipalityAdministrationAdressVM),
+            typeof(ServiceApplicantReceiptDataUnitInAdministration),			
+            typeof(ElectronicStatementAuthorVM),
+            typeof(PersonBasicDataVM),
+            typeof(ForeignCitizenBasicData),
+            typeof(ForeignEntityBasicDataVM),			
+            typeof(PersonNames),
+            typeof(PersonIdentifier),
+            typeof(IdentityDocumentBasicDataVM),
+            typeof(ForeignCitizenNames),			
+            typeof(ForeignCitizenPlaceOfBirth),
+            typeof(ForeignCitizenIdentityDocument),			
+            typeof(ElectronicServiceApplicant),
+            typeof(RegisteredDocumentURI),
+            typeof(AISCaseURI),
+            typeof(PoliceDepartment),
+            typeof(ElectronicServiceProviderBasicDataVM),			
+            typeof(AISCaseURIVM),
+            typeof(OutstandingConditionsForStartOfServiceMessageGrounds),			
+            typeof(DeadlineVM),
+            typeof(ReceiptAcknowledgedMessageRegisteredByVM),          
+            typeof(OfficialVM),			
+            typeof(RemovingIrregularitiesInstructionsIrregularitiesVM),
+            typeof(TerminationOfServiceMessageGrounds),	
+            typeof(RecipientGroup),			
+            typeof(ReceiptAcknowledgedMessageRegisteredByOfficerVM),
+            typeof(ElectronicStatementAuthor),			
+            typeof(ElectronicServiceRecipient),		
+            typeof(AISUserNamesVM),
+            typeof(PersonBasicData),
+            typeof(ForeignEntityBasicData),		
+            typeof(IdentityDocumentBasicData),
+			typeof(PersonAddress),	        
+            typeof(XMLDigitalSignature),   
+            typeof(UnitInfo),
+            typeof(DocumentMustServeToVM),
+            typeof(CitizenshipVM),
+            typeof(PersonalInformationVM),
+            typeof(EntityAddress),
+            typeof(IdentityDocumentForeignCitizenBasicData),
+            typeof(GenderDataGender),
+            typeof(GenderData),
+            typeof(PlaceOfBirthAbroad),
+            typeof(ServiceIrregularity),
+            typeof(RefusalVM),
+            typeof(ActionsTakenMessageVM)
+            };
+    var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(QualifierType),           
+            typeof(ServiceTermType),
+            typeof(ApplicationType),
+            typeof(ServiceResultReceiptMethods),
+            typeof(ElectronicServiceProviderType),
+            typeof(ElectronicServiceAuthorQualityType),			
+            typeof(PersonAndEntityBasicDataVM.PersonAndEntityChoiceType),			
+            typeof(ForeignEntityBasicDataVM.ForeignEntityChoiceType),		
+            typeof(PersonIdentifierChoiceType),  
+            typeof(IdentityDocumentType),  
+            typeof(DocumentElectronicTransportType),  
+            typeof(ElectronicDocumentDiscrepancyType), 
+            typeof(ChoiceType), 
+            typeof(OfficialVM.OfficialChoiceType), 
+            typeof(ElectronicStatementAuthor.ItemChoiceType), 
+            typeof(RecipientChoiceType), 
+            typeof(ForeignEntityIdentifierChoiceType), 
+            typeof(ItemChoiceType1), 
+            typeof(BIDPersonalIdentificationDocumentReceivePlace), 
+            typeof(BIDMaritalStatus), 
+            typeof(ExecutionPeriodType)
+            };
+    var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+
+<#=        enumes #>
+
+<#=        classes #> 

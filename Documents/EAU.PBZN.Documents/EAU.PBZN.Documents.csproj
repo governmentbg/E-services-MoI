@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="XSLT\**\*.xsl*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="XSLT\**\*.xsl*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\EAU.Documents\EAU.Documents.csproj" />
+    <ProjectReference Include="..\EAU.PBZN.Documents.Domain\EAU.PBZN.Documents.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

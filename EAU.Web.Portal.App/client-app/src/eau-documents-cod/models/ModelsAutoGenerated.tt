@@ -1,0 +1,74 @@
+﻿<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents.Domain\bin\Debug\netstandard2.0\EAU.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents\bin\Debug\netstandard2.0\EAU.Documents.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.COD.Documents.Domain\bin\Debug\netstandard2.0\EAU.Cod.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.COD.Documents\bin\Debug\netstandard2.0\EAU.Cod.Documents.dll" #>
+
+<#@ import namespace="EAU.COD.Documents.Models.Forms" #>
+<#@ import namespace="EAU.COD.Documents.Domain.Models" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(RequestForIssuingLicenseForPrivateSecurityServicesVM),
+            typeof(RequestForIssuingLicenseForPrivateSecurityServicesDataVM),
+            typeof(SecurityServiceTypesVM),
+            typeof(TerritorialScopeOfServicesVM),
+            typeof(TerritorialScopeOfServicesDistrictsVM),
+            typeof(NotificationForConcludingOrTerminatingEmploymentContractVM),
+            typeof(NotificationForConcludingOrTerminatingEmploymentContractDataVM),
+            typeof(NewEmployeeRequest),
+            typeof(RemoveEmployeeRequest),
+            typeof(Employee),
+            typeof(NotificationForTakingOrRemovingFromSecurityVM),
+            typeof(NotificationForTakingOrRemovingFromSecurityDataVM),
+            typeof(SecurityObjectsDataVM),
+            typeof(PersonalSecurity),
+            typeof(ProtectionPersonsProperty),
+            typeof(AlarmAndSecurityActivity),
+            typeof(SelfProtectionPersonsProperty),
+            typeof(SecurityOfSitesRealEstate),
+            typeof(SecurityOfEvents),
+            typeof(SecurityObject),
+            typeof(SecurityTransportingCargo),
+            typeof(ProtectionOfAgriculturalProperty),
+            typeof(SecurityTransport),
+            typeof(SecurityContractData),
+            typeof(ContractAssignor),
+            typeof(EntityAssignorData),
+            typeof(PersonAssignorData)
+            };
+    var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {            
+             typeof(PointOfPrivateSecurityServicesLaw),
+            typeof(ScopeOfCertification) ,            
+            typeof(NotificationOfEmploymentContractType),            
+            typeof(ContractType),
+            typeof(EmployeeIdentifierType),
+            typeof(GuardedPersonType),
+            typeof(ClothintType),
+            typeof(VehicleOwnershipType),
+            typeof(AccessRegimeType),
+            typeof(ControlType),
+            typeof(SecurityType),
+            typeof(NotificationType),
+            typeof(GuardedType),
+            typeof(AssignorPersonEntityType),
+            }; 
+    var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import moment from 'moment';
+import {ApplicationFormVMBase, PoliceDepartment, EntityAddress, PersonIdentifier } from 'eau-documents'
+
+<#=        enumes #>
+
+<#=        classes #> 

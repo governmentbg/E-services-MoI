@@ -1,0 +1,67 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\EAU\bin\Debug\netstandard2.0\EAU.dll" #>
+<#@ assembly name="$(SolutionDir)\EAU.Web.Portal.App\bin\Debug\net5.0\WAIS.Integration.EPortal.Core.dll" #>
+<#@ import namespace="EAU.Users.Models" #>
+<#@ import namespace="EAU.Common.Models" #>
+<#@ import namespace="EAU.Nomenclatures.Models" #>
+<#@ import namespace="EAU.Nomenclatures.Repositories" #>
+<#@ import namespace="EAU.CMS.Models" #>
+<#@ import namespace="EAU.CMS.Repositories" #>
+<#@ import namespace="EAU.Services.ServiceInstances.Models" #>
+
+<#@ import namespace="EAU.Payments.Obligations.Models" #>
+<#@ import namespace="EAU.Payments.PaymentRequests.Models" #>
+<#@ import namespace="EAU.Payments.RegistrationsData.Models" #>
+<#@ import namespace="WAIS.Integration.EPortal.Models" #>
+ 
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {   	
+            typeof(ServiceInstanceLoadOption),
+			typeof(ServiceInstanceSearchCriteria),
+			typeof(UserAuthenticationInfo),		
+            typeof(MyPaymentsObligationSearchCriteria),
+            typeof(ANDObligationSearchCriteria),	
+            typeof(SIObligationSearchCriteria),	
+            typeof(ANDObligationSearchResponse),
+            typeof(Obligation),		
+            typeof(ObligationRequest),
+            typeof(ObligationSearchCriteria),		
+            typeof(PaymentRequest),		
+            typeof(PaymentRequestSearchCriteria),	
+            typeof(StartPaymentRequest),		    
+            typeof(CaseFileInfo),
+            typeof(DocumentInfo),
+            typeof(ServiceInstanceInfo),
+            typeof(StageInstanceInfo)   
+        };       
+	var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {  
+			typeof(ServiceInstanceStatuses),
+            typeof(ObligationSearchModes),
+            typeof(ObligationTypes),
+            typeof(ObligationStatuses),
+            typeof(ObligedPersonIdentTypes),
+            typeof(DocTypes),
+            typeof(PaymentRequestStatuses),
+            typeof(ANDObligationSearchMode),
+            typeof(ServiceInstanceStatus),
+         };
+	var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import * as moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel, BasePagedSearchCriteria } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import { RegistrationDataTypes } from 'eau-core'
+import { URI } from './URI'
+
+<#= enumes #>
+
+<#= classes #> 

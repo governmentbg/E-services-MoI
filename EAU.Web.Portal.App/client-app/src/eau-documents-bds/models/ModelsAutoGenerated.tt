@@ -1,0 +1,66 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents.Domain\bin\Debug\netstandard2.0\EAU.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents\bin\Debug\netstandard2.0\EAU.Documents.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.BDS.Documents.Domain\bin\Debug\netstandard2.0\EAU.BDS.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.BDS.Documents\bin\Debug\netstandard2.0\EAU.BDS.Documents.dll" #>
+
+<#@ import namespace="EAU.BDS.Documents.Domain.Models" #>
+<#@ import namespace="EAU.BDS.Documents.Models.Forms" #>
+<#@ import namespace="EAU.BDS.Documents.Models" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(ApplicationForIssuingDocumentVM), 
+          	typeof(ApplicationForIssuingDocumentDataVM),
+          	typeof(IdentificationPhotoAndSignatureVM),
+          	typeof(ForeignIdentityBasicDataVM),
+          	typeof(ForeignerParentDataVM),
+          	typeof(ForeignerSpouseDataVM),
+          	typeof(PersonDataVM),
+          	typeof(ParentDataVM),
+          	typeof(SpouseDataVM),
+          	typeof(ApplicationForIssuanceOfIdentityDocumentsAndRPOFInTheRepublicOfBulgariaVM),
+          	typeof(ApplicationForIssuanceOfIdentityDocumentsAndRPOFInTheRepublicOfBulgariaDataVM),
+          	typeof(ApplicationForIssuanceOfPersonalDocumentsOfBulgarianCitizensVM),
+          	typeof(ApplicationForIssuanceOfPersonalDocumentsOfBulgarianCitizensDataVM),
+          	typeof(ApplicationForIssuingResidencePermitAndDrivingLicenseForEuropeanCitizensVM),
+          	typeof(ApplicationForIssuingResidencePermitAndDrivingLicenseForEuropeanCitizensDataVM),
+          	typeof(RequestForApplyingForServiceForIssuingOfBulgarianCitizensIdentityCardOrPassportVM),
+          	typeof(RequestForApplyingForServiceForIssuingOfBCICardOrPassportDataVM),
+          	typeof(DocumentToBeIssuedForVM),
+          	typeof(IssuedBulgarianIdentityDocumentsInPeriodVM),
+          	typeof(OtherIndormationConnectedWithIssuedBulgarianIdentityDocumentsVM),
+          	typeof(ForeignCitizenDataVM),
+          	typeof(IssuerCountryVM),
+          	typeof(PersonIdentificationData),
+          	typeof(PersonNamesLatin),
+            typeof(CertificateAttestingToEventsAndFactsRelatedToTheIssuanceOfIdentityDocumentsInZBLDVM),
+            typeof(IdentityDocumentData) 
+        };
+    var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {  
+            typeof(AddressForIssuing), 
+            typeof(IssueDocumentFor), 
+            typeof(BIDEyesColor)
+        };
+    var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import { ApplicationFormVMBase, GenderData, PlaceOfBirthAbroad, ForeignCitizenNames, PersonNames, DocumentMustServeToVM, PersonalInformationVM, CitizenshipVM, BIDPersonalIdentificationDocumentReceivePlace, IdentityDocumentType, PersonAddress, IdentityDocumentForeignCitizenBasicData, PoliceDepartment, BIDMaritalStatus, PersonIdentifier, SigningDocumentFormVMBase, OfficialVM,  DocumentURI, AISCaseURIVM, ElectronicServiceProviderBasicDataVM, ElectronicServiceApplicantVM} from 'eau-documents'
+import { TravelDocumentVM } from './TravelDocumentVM' 
+
+<#=        enumes #>
+
+<#=        classes #> 
+
+

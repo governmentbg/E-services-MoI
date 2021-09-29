@@ -1,0 +1,50 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents.Domain\bin\Debug\netstandard2.0\EAU.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.Documents\bin\Debug\netstandard2.0\EAU.Documents.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.KOS.Documents.Domain\bin\Debug\netstandard2.0\EAU.KOS.Documents.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)\Documents\EAU.KOS.Documents\bin\Debug\netstandard2.0\EAU.KOS.Documents.dll" #>
+
+<#@ import namespace="EAU.Documents.Models" #>
+<#@ import namespace="EAU.Documents.Domain.Models" #>
+<#@ import namespace="EAU.KOS.Documents.Domain.Models" #>
+<#@ import namespace="EAU.KOS.Documents.Models.Forms" #>
+<#@ import namespace="EAU.KOS.Documents.Models" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {
+            typeof(ApplicationByFormAnnex9VM), 
+          	typeof(ApplicationByFormAnnex9DataVM),
+            typeof(ApplicationByFormAnnex10VM), 
+          	typeof(ApplicationByFormAnnex10DataVM),
+          	typeof(PersonNames),
+          	typeof(PersonIdentifier),
+          	typeof(IdentityDocumentBasicDataVM),
+          	typeof(NotificationForNonFirearmVM),
+          	typeof(NotificationForNonFirearmDataVM),
+          	typeof(NotificationForFirearmVM),
+          	typeof(NotificationForFirearmDataVM),
+          	typeof(TechnicalSpecificationOfWeapon),
+        };
+    var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+    var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {  
+           	typeof(PersonIdentifierChoiceType),
+           	typeof(WeaponNoticeType),
+        };
+    var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated Object
+import moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import { ApplicationFormVMBase, PersonAddress, PersonalInformationVM, PoliceDepartment, IdentityDocumentType, PersonBasicDataVM } from 'eau-documents'
+
+<#=        enumes #>
+
+<#=        classes #> 

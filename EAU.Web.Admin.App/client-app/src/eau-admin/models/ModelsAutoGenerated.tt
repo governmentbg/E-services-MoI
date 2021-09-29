@@ -1,0 +1,57 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="$(SolutionDir)\EAU.Core\bin\Debug\netstandard2.0\EAU.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\EAU\bin\Debug\netstandard2.0\EAU.dll" #>
+
+<#@ import namespace="EAU.Common.Models" #>
+<#@ import namespace="EAU.Nomenclatures.Models" #>
+<#@ import namespace="EAU.ServiceLimits.Models" #>
+<#@ import namespace="EAU.Nomenclatures.Repositories" #>
+<#@ import namespace="EAU.DirectoryServices.Models" #>
+<#@ import namespace="EAU.Payments.RegistrationsData.Models" #>
+<#@ import namespace="EAU.Audit.Models" #>
+<#@ import namespace="EAU.Users.Models" #>
+
+<#			
+    var classesToGenerate =  new System.Collections.Generic.List<Type>()
+        {   
+			typeof(DocumentTypeSearchCriteria),		
+			typeof(LabelSearchCriteria),
+			typeof(LabelTranslation),		
+			typeof(ServiceTranslation),		 
+            typeof(ServiceGroupSearchCriteria),	
+			typeof(ServiceGroupTranslation),
+			typeof(LDAPUserSearchCritaria),
+			typeof(LDAPUser),
+			typeof(DataServiceLimitsSearchCriteria),
+			typeof(DataServiceLimit),
+			typeof(RegistrationDataSearchCriteria),
+			typeof(RegistrationData), 
+			typeof(ActionType), 
+			typeof(ObjectType), 
+            };
+	var classes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptClasses(classesToGenerate);
+
+	 var enumesToGenerate =  new System.Collections.Generic.List<Type>()
+        {           
+            typeof(DataServiceLimitStatus),
+			typeof(ObjectTypes),
+			typeof(ActionTypes),
+			typeof(LogActionSearchModes),
+			typeof(AuthenticationTypes),
+			typeof(UserStatuses),
+            };
+	var enumes= EAU.Utilities.TypeScriptT4TemplatesHelpers.GenerateTypeScriptEnumes(enumesToGenerate);
+ #>
+// Auto Generated ObjectAuthenticationTypes
+import moment from 'moment'
+import { observable } from 'mobx'
+import { TypeSystem, BaseDataModel, BasePagedSearchCriteria } from 'cnsys-core'
+import { moduleContext } from '../ModuleContext'
+import { RegistrationDataTypes } from 'eau-core'
+
+<#= enumes #>
+
+<#= classes #> 
+ 
